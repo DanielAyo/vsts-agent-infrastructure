@@ -1,5 +1,6 @@
 VSTS Agent Docker Image
 ====================
+This is a modified VSTS image from lenisha. This fork removes the ansible install code as it is already pre-installed.
 
 This repository contains `Dockerfile` definitions for [lenisha/vsts-agent-infrastructure](https://github.com/lenisha/vsts-agent-infrastructure) Docker images.
 
@@ -10,9 +11,8 @@ This repository contains `Dockerfile` definitions for [lenisha/vsts-agent-infras
 Docker image for VSTS Agent with infrastrucure tools installed
 
 ```
-ENV TERRAFORM_VERSION 0.11.10
-ENV PACKER_VERSION 1.3.2
-ENV ANSIBLE_VERSION 2.0.0.2
+ENV TERRAFORM_VERSION 0.11.11
+ENV PACKER_VERSION 1.3.4
 ```
 
 ## How to use these image
@@ -40,4 +40,3 @@ TODO: add automatic updates when new release posted
 
 Other tools installed on VSTS image are listed:
 [vsts agent tools](https://github.com/Microsoft/vsts-agent-docker/blob/6689c2bd45304ec56d2628f393355b52a451453e/README.md#standard-images)
-
