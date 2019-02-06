@@ -2,5 +2,5 @@
 # Module directory
 .docker/
 .terraform/
-
+.tfvars
 *.tfstate*

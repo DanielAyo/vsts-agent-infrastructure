@@ -1,3 +1,8 @@
+provider "azurerm" {
+  # Whilst version is optional, we /strongly recommend/ using it to pin the version of the Provider being used
+  version = "=1.21.0"
+}
+
 resource "azurerm_resource_group" "aci-rg" {
   name     = "${var.rg_group_name}"
   location = "${var.location}"
@@ -41,7 +46,10 @@ resource "azurerm_container_group" "aci-cg" {
     image  = "${var.container_image}"
     cpu    = "0.5"
     memory = "1.5"
-    port   = "80"
+    ports  = {
+      port     = 80
+      protocol = "TCP"
+    }
 
     environment_variables {
       "VSTS_ACCOUNT" = "${var.vsts-account}"
