@@ -1,5 +1,19 @@
+variable "rg_group_name" {
+  default = "aci-rg"
+}
+
+variable "location" {
+  default = "northeurope"
+}
+variable "share_name" {
+  default = "aci-share"
+}
+
+variable "container_image" {
+  default = "danielayo/vsts-agent-infrastructure"
+}
 variable "vsts-account" {
-  default = "eneros"
+  default = ""
 }
 
 variable "vsts-token" {

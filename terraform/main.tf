@@ -1,6 +1,6 @@
 resource "azurerm_resource_group" "aci-rg" {
-  name     = "aci-vsts"
-  location = "westus2"
+  name     = "${var.rg_group_name}"
+  location = "${var.location}"
 }
 
 resource "random_id" "randomId" {
@@ -22,14 +22,14 @@ resource "azurerm_storage_account" "aci-sa" {
 }
 
 resource "azurerm_storage_share" "aci-share" {
-  name                 = "aci-vsts-share"
+  name                 = "${var.share_name}"
   resource_group_name  = "${azurerm_resource_group.aci-rg.name}"
   storage_account_name = "${azurerm_storage_account.aci-sa.name}"
 
   quota = 50
 }
 
-resource "azurerm_container_group" "aci-vsts" {
+resource "azurerm_container_group" "aci-cg" {
   name                = "aci-agent"
   location            = "${azurerm_resource_group.aci-rg.location}"
   resource_group_name = "${azurerm_resource_group.aci-rg.name}"
@@ -38,7 +38,7 @@ resource "azurerm_container_group" "aci-vsts" {
 
   container {
     name   = "vsts-agent"
-    image  = "lenisha/vsts-agent-infrastructure"
+    image  = "${var.container_image}"
     cpu    = "0.5"
     memory = "1.5"
     port   = "80"
@@ -62,6 +62,6 @@ resource "azurerm_container_group" "aci-vsts" {
   }
 
   tags {
-    environment = "testing"
+    environment = "test"
   }
 }
